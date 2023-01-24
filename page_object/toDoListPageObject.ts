@@ -4,11 +4,6 @@ import {expect} from '@playwright/test';
 const ulrTodolist = 'https://webdriveruniversity.com/To-Do-List/index.html'
 const newTodoPlaceholder = 'Add new todo';
 
-function delay(time) {
-    return new Promise(function(resolve) { 
-        setTimeout(resolve, time)
-    });
- }
 
 export class ToDoListPageObject{
     async navigate(page: any){
