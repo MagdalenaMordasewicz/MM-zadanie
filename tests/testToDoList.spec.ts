@@ -31,6 +31,21 @@ test('completed to do item', async ({page}) => {
   await toDoListPageObject.chceckIfTaskIsCompleted(page, toDoListData.taskToComplete)
 })
 
+test('count tasks on list', async ({page}) => {
+  await toDoListPageObject.checkHowManyElementsOnList(page, 3)
+  
+  await toDoListPageObject.fillAddTodoItem(page, toDoListData.taskToComplete)
+  await toDoListPageObject.enterAddTodoItem(page)
+  await toDoListPageObject.checkIfTaskWasAdded(page, toDoListData.taskToComplete)
+
+  await toDoListPageObject.checkHowManyElementsOnList(page, 4)
+
+})
+
+
+
+
+
 
 
 

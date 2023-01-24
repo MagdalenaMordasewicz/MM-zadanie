@@ -30,6 +30,9 @@ export class ToDoListPageObject{
         await expect(page.locator(`text=${value}`)).not.toHaveClass('')
     }
 
+    async checkHowManyElementsOnList (page: any, decimal: number){
+        await expect(page.locator('li')).toHaveCount(decimal);
+    }
 }
 
 export const toDoListPageObject = new ToDoListPageObject()
