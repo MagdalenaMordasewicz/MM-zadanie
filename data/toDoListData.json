@@ -1,4 +1,5 @@
 {
   "taskToAdd": "New added task",
-  "taskToComplete": "Task to complete"
+  "taskToComplete": "Task to complete",
+  "taskToDelete": "Task to delete"
 }

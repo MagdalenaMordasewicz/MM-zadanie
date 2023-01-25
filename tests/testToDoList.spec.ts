@@ -43,6 +43,16 @@ test('count tasks on list', async ({page}) => {
 })
 
 
+test('delete to do item', async ({page}) => {
+  await toDoListPageObject.fillAddTodoItem(page, toDoListData.taskToDelete)
+  await toDoListPageObject.enterAddTodoItem(page)
+  await toDoListPageObject.checkIfTaskWasAdded(page, toDoListData.taskToDelete)
+
+  await toDoListPageObject.clickDeleteButton(page, toDoListData.taskToDelete)
+  await toDoListPageObject.checkIfTaskWasDeleted(page, toDoListData.taskToDelete)
+
+})
+
 
 
 

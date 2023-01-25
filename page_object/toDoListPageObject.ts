@@ -18,8 +18,8 @@ export class ToDoListPageObject{
         await page.getByPlaceholder(newTodoPlaceholder).press('Enter')
     }
 
-    async checkIfTaskWasAdded (page: any, message: string){
-        await expect(page.locator(`text=${message}`)).toHaveText(message)
+    async checkIfTaskWasAdded (page: any, value: string){
+        await expect(page.locator(`text=${value}`)).toHaveText(value)
     }
 
     async clickOnCompletedTask (page: any, value: string){
@@ -33,6 +33,15 @@ export class ToDoListPageObject{
     async checkHowManyElementsOnList (page: any, decimal: number){
         await expect(page.locator('li')).toHaveCount(decimal);
     }
+    
+    async clickDeleteButton (page: any, value: string){
+        await page.getByText(value).hover()
+        await page.getByRole('listitem').filter({hasText: value}).locator('i').click()
+    } 
+    async checkIfTaskWasDeleted (page: any, value: string){
+        await expect(page.locator(`text=${value}`)).not.toBeVisible()
+    } 
+
 }
 
 export const toDoListPageObject = new ToDoListPageObject()
