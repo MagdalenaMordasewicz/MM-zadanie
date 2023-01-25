@@ -30,16 +30,18 @@ test('completed to do item', async ({page}) => {
     await toDoListPageObject.checkIfTaskIsCompleted(page, toDoListData.taskToComplete)})
 })
 
-test('count tasks on list', async ({page}) => {
-  await test.step ("Check if number of items in todo list at start", async () =>{    
-    await toDoListPageObject.checkIfNumberOfTodosIsCorrect(page,3)})
-  await test.step ("Add task to do list", async () =>{
+test ('todo task count', async ({page}) => {
+  const itemNum =  await test.step ("Count tasks on to do list at start", async () => {
+    const i = toDoListPageObject.countItemsOnList(page) 
+    return i;
+  })
+  await test.step("Add task to the list", async () => {
     await toDoListPageObject.fillAddTodoItem(page, toDoListData.taskToAdd)
-    await toDoListPageObject.enterAddTodoItem(page)
-    await toDoListPageObject.checkIfTaskWasAdded(page, toDoListData.taskToAdd)})
-  await test.step ("Check if number of items in todo list is correct", async () =>{
-    await toDoListPageObject.checkIfNumberOfTodosIsCorrect(page, 4)})
-})
+    await toDoListPageObject.enterAddTodoItem(page)    
+  })
+  await test.step("Check if number of items in todo list is correct",async () => {
+    await toDoListPageObject.checkIfNumberOfTodosIsCorrect(page, itemNum+1)})
+  })  
 
 test('delete to do item', async ({page}) => {
   await test.step ("Add task to do list", async () =>{

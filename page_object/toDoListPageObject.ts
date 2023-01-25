@@ -1,4 +1,4 @@
-import {expect} from '@playwright/test';
+import {expect, Page} from '@playwright/test';
 
 const ulrTodolist = 'https://webdriveruniversity.com/To-Do-List/index.html'
 const newTodoPlaceholder = 'Add new todo'
@@ -35,7 +35,12 @@ export class ToDoListPageObject{
     }
 
     async checkIfNumberOfTodosIsCorrect (page: any, listItemsCount: number){
-        await expect(page.locator(liLocator)).toHaveCount(listItemsCount);
+        await expect(page.locator(liLocator)).toHaveCount(listItemsCount)
+    }
+
+    async countItemsOnList (page:Page){
+        const itemsNumber = await page.locator(liLocator).count();
+        return itemsNumber;
     }
     
     async clickDeleteButton (page: any, value: string){
