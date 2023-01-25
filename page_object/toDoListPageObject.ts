@@ -1,7 +1,9 @@
 import {expect} from '@playwright/test';
 
 const ulrTodolist = 'https://webdriveruniversity.com/To-Do-List/index.html'
-const newTodoPlaceholder = 'Add new todo';
+const newTodoPlaceholder = 'Add new todo'
+const liLocator = 'li'
+const iLocator = 'i'
 
 
 export class ToDoListPageObject{
@@ -30,16 +32,15 @@ export class ToDoListPageObject{
     }
     async checkIfTaskIsCompleted (page: any, value: string){
         await expect(page.locator(`text=${value}`)).toHaveClass('completed')
-        //await expect(page.locator(`text=${value}`)).not.toHaveClass('')
     }
 
     async checkIfNumberOfTodosIsCorrect (page: any, listItemsCount: number){
-        await expect(page.locator('li')).toHaveCount(listItemsCount);
+        await expect(page.locator(liLocator)).toHaveCount(listItemsCount);
     }
     
     async clickDeleteButton (page: any, value: string){
         await page.getByText(value).hover()
-        await page.getByRole('listitem').filter({hasText: value}).locator('i').click()
+        await page.getByRole('listitem').filter({hasText: value}).locator(iLocator).click()
     } 
     async checkIfTaskWasDeleted (page: any, value: string){
         await expect(page.locator(`text=${value}`)).not.toBeVisible()
