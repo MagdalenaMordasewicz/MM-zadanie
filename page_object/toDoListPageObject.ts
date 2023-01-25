@@ -10,6 +10,10 @@ export class ToDoListPageObject{
         await page.goto(ulrTodolist)
     }
 
+    async checkPageTitle (page: any){
+        await expect(page).toHaveTitle('WebDriver | To Do List');
+   }
+
     async fillAddTodoItem (page: any, value: string){
         await page.getByPlaceholder(newTodoPlaceholder).fill(value)
     }
@@ -41,7 +45,6 @@ export class ToDoListPageObject{
     async checkIfTaskWasDeleted (page: any, value: string){
         await expect(page.locator(`text=${value}`)).not.toBeVisible()
     } 
-
 }
 
 export const toDoListPageObject = new ToDoListPageObject()
